@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx"
-            fx:controller="ru.spbstu.fxdrums.controller.DrumsController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="640.0"
+      xmlns="http://javafx.com/javafx/11.0.1"
+      fx:controller="ru.spbstu.fxdrums.controller.DrumsController">
+    <MenuBar>
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" text="Mixer" onAction="#onMixer"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Exit" onAction="#onExit"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Skin">
+            <RadioMenuItem mnemonicParsing="false" selected="true" text="Light">
+                <toggleGroup>
+                    <ToggleGroup fx:id="skin"/>
+                </toggleGroup>
+            </RadioMenuItem>
+            <RadioMenuItem mnemonicParsing="false" text="Dark" toggleGroup="$skin"/>
+        </Menu>
+    </MenuBar>
+    <GridPane alignment="CENTER" maxWidth="-Infinity" VBox.vgrow="ALWAYS" onKeyTyped="#handleKeyPressed">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <Circle fill="DODGERBLUE" onMouseClicked="#onBassClicked" radius="35.0" stroke="BLACK"
+                strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4"
+                GridPane.valignment="CENTER"/>
+        <Circle fill="#f8f8d6" layoutX="410.0" layoutY="320.0" onMouseClicked="#onSnareClicked"
+                radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1"
+                GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
+        <Circle fill="#f2ff1f" layoutX="160.0" layoutY="270.0" onMouseClicked="#onHiHatClicked"
+                radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER"
+                GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+        <Circle fill="#ff9a1f" layoutX="260.0" layoutY="344.0" onMouseClicked="#onCrashClicked"
+                radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER"
+                GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+    </GridPane>
+</VBox>
