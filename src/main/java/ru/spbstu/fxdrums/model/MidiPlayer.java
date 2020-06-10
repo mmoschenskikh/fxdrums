@@ -5,7 +5,7 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Synthesizer;
 
-public class MidiPlayer {
+public class MidiPlayer implements Player {
 
     private final int noteNumber;
     private MidiChannel[] channels;
@@ -24,5 +24,10 @@ public class MidiPlayer {
     public void playSound(int volume) {
         channels[9].noteOn(noteNumber, volume);
         channels[9].noteOff(noteNumber);
+    }
+
+    @Override
+    public int getType() {
+        return PLAYER_TYPE_MIDI;
     }
 }
