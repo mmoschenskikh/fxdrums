@@ -3,7 +3,7 @@ package ru.spbstu.fxdrums.model;
 public enum Drum {
     BASS(36),
     SNARE(38),
-    HI_HAT(44),
+    HI_HAT(42),
     CRASH(55),
     RIDE(51),
     HIGH_TOM(50),
