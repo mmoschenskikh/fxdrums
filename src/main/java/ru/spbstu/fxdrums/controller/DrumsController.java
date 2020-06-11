@@ -32,16 +32,15 @@ public class DrumsController implements Initializable {
     private final Drum mTom = Drum.MEDIUM_TOM;
     private final Drum fTom = Drum.FLOOR_TOM;
 
-    @FXML
-    public RadioMenuItem typeMidi, typeFile;
     private HostServices services;
-
     private Drum[] drums = {bass, snare, hiHat, crash, ride, mTom, fTom};
     private boolean showingHelp = false;
+    private String gitHubLink;
 
     @FXML
     public ToggleGroup soundType;
-    private String gitHubLink;
+    @FXML
+    public RadioMenuItem typeMidi, typeFile;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -54,54 +53,46 @@ public class DrumsController implements Initializable {
             exception.printStackTrace();
         }
         soundType.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if (typeMidi.isSelected()) {
-                try {
-                    setPlayerType(PLAYER_TYPE_MIDI);
-                } catch (FileNotFoundException neverHappens) {
-                    // Never happens
-                }
-            } else {
-                try {
-                    setPlayerType(PLAYER_TYPE_FILE);
-                } catch (FileNotFoundException e) {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("alertbox.fxml"));
-                        Scene scene = new Scene(loader.load());
-                        Stage stage = new Stage();
-
-                        stage.setScene(scene);
-                        stage.setTitle("Cannot find a sound file");
-                        stage.setResizable(false);
-                        stage.initModality(Modality.APPLICATION_MODAL);
-
-                        AlertBoxController ab = loader.getController();
-                        ab.setMessage(e.getMessage());
-
-                        stage.showAndWait();
-                    } catch (IOException exception) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        setPlayerType(PLAYER_TYPE_MIDI);
-                    } catch (FileNotFoundException neverHappens) {
-                        // Never happens
-                    }
-                    typeMidi.setSelected(true);
-                }
-            }
+            if (typeMidi.isSelected())
+                setPlayerType(PLAYER_TYPE_MIDI);
+            else
+                setPlayerType(PLAYER_TYPE_FILE);
         });
     }
 
     /**
      * Changes the player type for every single drum.
+     * If PLAYER_TYPE_FILE was chosen and some of the files were not found, PLAYER_TYPE_MIDI is set.
      *
      * @param playerType the type of sound player to set.
-     * @throws FileNotFoundException if PLAYER_TYPE_FILE chosen and some file is not found.
      */
-    private void setPlayerType(int playerType) throws FileNotFoundException {
-        for (Drum drum : drums) {
-            drum.setPlayerType(playerType);
+    private void setPlayerType(int playerType) {
+        try {
+            for (Drum drum : drums) {
+                drum.setPlayerType(playerType);
+            }
+        } catch (FileNotFoundException e) {
+            setPlayerType(PLAYER_TYPE_MIDI);
+            typeMidi.setSelected(true);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("alertbox.fxml"));
+                Scene scene = new Scene(loader.load());
+                Stage stage = new Stage();
+
+                stage.setScene(scene);
+                stage.setTitle("Cannot find a sound file");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
+
+                AlertBoxController ab = loader.getController();
+                ab.setMessage(e.getMessage());
+
+                stage.showAndWait();
+            } catch (IOException exception) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public void onHelp() {

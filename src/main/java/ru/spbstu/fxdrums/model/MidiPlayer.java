@@ -5,6 +5,10 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Synthesizer;
 
+/**
+ * Player that synthesizes drums sounds using MIDI.
+ * The sounds might differ on different sound cards, but no extra files needed.
+ */
 public class MidiPlayer implements Player {
 
     private final int noteNumber;

@@ -6,6 +6,10 @@ import javafx.scene.media.MediaException;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Player that plays drums sounds from external files.
+ * The sounds are the same on different sound cards, but extra files are needed.
+ */
 public class FromFilePlayer implements Player {
 
     private final AudioClip clip;
