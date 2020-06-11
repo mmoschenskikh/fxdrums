@@ -21,7 +21,8 @@
             <RadioMenuItem toggleGroup="$soundType" text=".wav files (a bit faster, needs extra files)"/>
         </Menu>
     </MenuBar>
-    <GridPane alignment="CENTER" maxWidth="-Infinity" VBox.vgrow="ALWAYS" onKeyTyped="#handleKeyPressed">
+    <GridPane alignment="CENTER" maxWidth="-Infinity" VBox.vgrow="ALWAYS" focusTraversable="true"
+              onKeyPressed="#handleKeyPressed">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>

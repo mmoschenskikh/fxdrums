@@ -29,7 +29,7 @@ public enum Drum {
         return player.getType();
     }
 
-    public void setPlayer(int type) throws FileNotFoundException {
+    public void setPlayerType(int type) throws FileNotFoundException {
         switch (type) {
             case PLAYER_TYPE_MIDI:
                 player = new MidiPlayer(noteNumber);

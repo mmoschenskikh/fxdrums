@@ -92,32 +92,31 @@ public class DrumsController implements Initializable {
      */
     private void setPlayerType(int playerType) throws FileNotFoundException {
         for (Drum drum : drums) {
-            drum.setPlayer(playerType);
+            drum.setPlayerType(playerType);
         }
     }
 
     public void handleKeyPressed(KeyEvent ke) {
-        //FIXME
         switch (ke.getCode()) {
-            case M:
+            case B:
                 bass.makeSound();
                 break;
-            case J:
+            case V:
                 snare.makeSound();
                 break;
-            case B:
+            case C:
                 hiHat.makeSound();
                 break;
-            case Y:
+            case D:
                 crash.makeSound();
                 break;
-            case I:
+            case H:
                 mTom.makeSound();
                 break;
-            case O:
+            case J:
                 ride.makeSound();
                 break;
-            case L:
+            case N:
                 fTom.makeSound();
                 break;
         }

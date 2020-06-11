@@ -16,6 +16,7 @@ public class DrumsApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("drums.fxml")));
+
         stage.setScene(scene);
         stage.setTitle("FXDrums");
         stage.setResizable(false);
