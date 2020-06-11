@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<Accordion xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+           minWidth="-Infinity" prefHeight="420.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/11.0.1"
+           fx:controller="ru.spbstu.fxdrums.controller.HelpController" expandedPane="$overviewPane">
+    <panes>
+        <TitledPane animated="false" text="Overview" fx:id="overviewPane">
+            <StackPane alignment="TOP_CENTER" prefHeight="150.0" prefWidth="200.0">
+                <Label fx:id="overviewHelp" text="Label" wrapText="true">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+            </StackPane>
+        </TitledPane>
+        <TitledPane animated="false" text="Controls">
+            <StackPane alignment="TOP_CENTER" prefHeight="150.0" prefWidth="200.0">
+                <Label fx:id="controlsHelp" text="Label" wrapText="true">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+            </StackPane>
+        </TitledPane>
+        <TitledPane animated="false" text="Sound types">
+            <StackPane alignment="TOP_CENTER" prefHeight="150.0" prefWidth="200.0">
+                <Label fx:id="soundHelp" text="Label" wrapText="true">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+            </StackPane>
+        </TitledPane>
+    </panes>
+</Accordion>

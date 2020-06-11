@@ -4,25 +4,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="640.0"
-      xmlns="http://javafx.com/javafx/11.0.1"
-      fx:controller="ru.spbstu.fxdrums.controller.DrumsController">
+      xmlns="http://javafx.com/javafx/11.0.1" fx:controller="ru.spbstu.fxdrums.controller.DrumsController">
     <MenuBar>
         <Menu text="File">
-            <MenuItem text="Mixer" onAction="#onMixer"/>
+            <MenuItem onAction="#onMixer" text="Mixer"/>
             <SeparatorMenuItem/>
-            <MenuItem text="Exit" onAction="#onExit"/>
+            <MenuItem onAction="#onExit" text="Exit"/>
         </Menu>
         <Menu text="Sound Type">
-            <fx:define>
-                <ToggleGroup fx:id="soundType"/>
-            </fx:define>
-            <RadioMenuItem toggleGroup="$soundType" selected="true" text="MIDI (a bit slower, platform-dependent)"
-                           fx:id="typeMidi"/>
-            <RadioMenuItem toggleGroup="$soundType" text=".wav files (a bit faster, needs extra files)"/>
+            <RadioMenuItem fx:id="typeMidi" selected="true" toggleGroup="$soundType">
+                <toggleGroup>
+                    <ToggleGroup fx:id="soundType"/>
+                </toggleGroup>
+            </RadioMenuItem>
+            <RadioMenuItem toggleGroup="$soundType" fx:id="typeFile"/>
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="View Help" accelerator="F1" onAction="#onHelp"/>
+            <MenuItem text="Visit GitHub page" onAction="#onGitHub"/>
         </Menu>
     </MenuBar>
-    <GridPane alignment="CENTER" maxWidth="-Infinity" VBox.vgrow="ALWAYS" focusTraversable="true"
-              onKeyPressed="#handleKeyPressed">
+    <GridPane alignment="CENTER" focusTraversable="true" maxWidth="-Infinity" onKeyPressed="#handleKeyPressed"
+              VBox.vgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
@@ -36,17 +39,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         </rowConstraints>
-        <Circle fill="DODGERBLUE" onMouseClicked="#onBassClicked" radius="35.0" stroke="BLACK"
-                strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4"
+        <Circle fill="DODGERBLUE" onMouseClicked="#onBass" radius="35.0" stroke="BLACK" strokeType="INSIDE"
+                GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4"
                 GridPane.valignment="CENTER"/>
-        <Circle fill="#f8f8d6" layoutX="410.0" layoutY="320.0" onMouseClicked="#onSnareClicked"
-                radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1"
-                GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
-        <Circle fill="#f2ff1f" layoutX="160.0" layoutY="270.0" onMouseClicked="#onHiHatClicked"
-                radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER"
-                GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
-        <Circle fill="#ff9a1f" layoutX="260.0" layoutY="344.0" onMouseClicked="#onCrashClicked"
-                radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER"
-                GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+        <Circle fill="#f8f8d6" layoutX="410.0" layoutY="320.0" onMouseClicked="#onSnare" radius="35.0" stroke="BLACK"
+                strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                GridPane.valignment="CENTER"/>
+        <Circle fill="#f2ff1f" layoutX="160.0" layoutY="270.0" onMouseClicked="#onHiHat" radius="35.0" stroke="BLACK"
+                strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+        <Circle fill="#ff9a1f" layoutX="260.0" layoutY="344.0" onMouseClicked="#onCrash" radius="35.0" stroke="BLACK"
+                strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
     </GridPane>
 </VBox>

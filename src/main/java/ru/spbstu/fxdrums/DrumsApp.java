@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ru.spbstu.fxdrums.controller.DrumsController;
 
 import java.io.IOException;
 
@@ -15,11 +16,15 @@ public class DrumsApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("drums.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("drums.fxml"));
+        Scene scene = new Scene(loader.load());
 
         stage.setScene(scene);
         stage.setTitle("FXDrums");
         stage.setResizable(false);
+
+        DrumsController dc = loader.getController();
+        dc.setHostServices(getHostServices());
 
         stage.show();
     }

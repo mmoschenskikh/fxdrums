@@ -1,5 +1,6 @@
 package ru.spbstu.fxdrums.controller;
 
+import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,16 +16,13 @@ import ru.spbstu.fxdrums.model.Drum;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 import static ru.spbstu.fxdrums.model.Player.PLAYER_TYPE_FILE;
 import static ru.spbstu.fxdrums.model.Player.PLAYER_TYPE_MIDI;
 
 public class DrumsController implements Initializable {
-
-    private final String MIDI_TOGGLE_LABEL = "MIDI (a bit slower, platform-dependent)";
-    private final String FILE_TOGGLE_LABEL = ".wav files (a bit faster, needs extra files)";
-
 
     private final Drum bass = Drum.BASS;
     private final Drum snare = Drum.SNARE;
@@ -34,19 +32,29 @@ public class DrumsController implements Initializable {
     private final Drum mTom = Drum.MEDIUM_TOM;
     private final Drum fTom = Drum.FLOOR_TOM;
 
+    @FXML
+    public RadioMenuItem typeMidi, typeFile;
+    private HostServices services;
+
     private Drum[] drums = {bass, snare, hiHat, crash, ride, mTom, fTom};
+    private boolean showingHelp = false;
 
     @FXML
     public ToggleGroup soundType;
-
-    @FXML
-    public RadioMenuItem typeMidi;
+    private String gitHubLink;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            PropertyResourceBundle bundle = new PropertyResourceBundle(getClass().getResourceAsStream("drums_strings"));
+            typeMidi.setText(bundle.getString("midi_toggle_label"));
+            typeFile.setText(bundle.getString("file_toggle_label"));
+            gitHubLink = bundle.getString("github_link");
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         soundType.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            RadioMenuItem rmi = (RadioMenuItem) soundType.getSelectedToggle();
-            if (rmi.getText().equals(MIDI_TOGGLE_LABEL)) {
+            if (typeMidi.isSelected()) {
                 try {
                     setPlayerType(PLAYER_TYPE_MIDI);
                 } catch (FileNotFoundException neverHappens) {
@@ -96,28 +104,55 @@ public class DrumsController implements Initializable {
         }
     }
 
+    public void onHelp() {
+        try {
+            if (!showingHelp) {
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("help.fxml")));
+                Stage stage = new Stage();
+
+                stage.setScene(scene);
+                stage.setTitle("Help");
+                stage.setResizable(false);
+
+                showingHelp = true;
+                stage.showAndWait();
+                showingHelp = false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onGitHub() {
+        services.showDocument(gitHubLink);
+    }
+
+    public void setHostServices(HostServices services) {
+        this.services = services;
+    }
+
     public void handleKeyPressed(KeyEvent ke) {
         switch (ke.getCode()) {
             case B:
-                bass.makeSound();
+                onBass();
                 break;
             case V:
-                snare.makeSound();
+                onSnare();
                 break;
             case C:
-                hiHat.makeSound();
+                onHiHat();
                 break;
             case D:
-                crash.makeSound();
+                onCrash();
                 break;
             case H:
-                mTom.makeSound();
+                onMTom();
                 break;
             case J:
-                ride.makeSound();
+                onRide();
                 break;
             case N:
-                fTom.makeSound();
+                onFTom();
                 break;
         }
     }
@@ -149,19 +184,31 @@ public class DrumsController implements Initializable {
         Platform.exit();
     }
 
-    public void onBassClicked() {
+    public void onBass() {
         bass.makeSound();
     }
 
-    public void onSnareClicked() {
+    public void onSnare() {
         snare.makeSound();
     }
 
-    public void onHiHatClicked() {
+    public void onHiHat() {
         hiHat.makeSound();
     }
 
-    public void onCrashClicked() {
+    public void onCrash() {
         crash.makeSound();
+    }
+
+    public void onMTom() {
+        mTom.makeSound();
+    }
+
+    public void onRide() {
+        ride.makeSound();
+    }
+
+    public void onFTom() {
+        fTom.makeSound();
     }
 }
