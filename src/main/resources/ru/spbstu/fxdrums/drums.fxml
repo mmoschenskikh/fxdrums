@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="640.0"
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="570.0"
       xmlns="http://javafx.com/javafx/11.0.1" fx:controller="ru.spbstu.fxdrums.controller.DrumsController">
     <MenuBar>
         <Menu text="File">
@@ -26,23 +26,23 @@
             <MenuItem onAction="#onGitHub" text="Visit GitHub page"/>
         </Menu>
     </MenuBar>
-    <AnchorPane prefHeight="375.0" prefWidth="640.0" onKeyPressed="#handleKeyPressed" focusTraversable="true">
+    <AnchorPane focusTraversable="true" onKeyPressed="#handleKeyPressed" prefHeight="375.0" prefWidth="640.0">
         <VBox.margin>
             <Insets/>
         </VBox.margin>
-        <ImageView fx:id="bassImage" fitHeight="186.0" fitWidth="186.0" layoutX="227.0" layoutY="177.0"
+        <ImageView fx:id="bassImage" fitHeight="186.0" fitWidth="186.0" layoutX="183.0" layoutY="176.0"
                    onMouseClicked="#onBass"/>
-        <ImageView fx:id="snareImage" fitHeight="146.0" fitWidth="146.0" layoutX="181.0" layoutY="104.0"
+        <ImageView fx:id="snareImage" fitHeight="146.0" fitWidth="146.0" layoutX="137.0" layoutY="103.0"
                    onMouseClicked="#onSnare"/>
-        <ImageView fx:id="hiHatImage" fitHeight="140.0" fitWidth="140.0" layoutX="87.0" layoutY="200.0"
+        <ImageView fx:id="hiHatImage" fitHeight="140.0" fitWidth="140.0" layoutX="43.0" layoutY="199.0"
                    onMouseClicked="#onHiHat"/>
-        <ImageView fx:id="crashImage" fitHeight="164.0" fitWidth="164.0" layoutX="75.0" layoutY="14.0"
+        <ImageView fx:id="crashImage" fitHeight="164.0" fitWidth="164.0" layoutX="31.0" layoutY="13.0"
                    onMouseClicked="#onCrash"/>
-        <ImageView fx:id="mTomImage" fitHeight="116.0" fitWidth="116.0" layoutX="320.0" layoutY="84.0"
+        <ImageView fx:id="mTomImage" fitHeight="116.0" fitWidth="116.0" layoutX="276.0" layoutY="83.0"
                    onMouseClicked="#onMTom"/>
-        <ImageView fx:id="fTomImage" fitHeight="175.0" fitWidth="175.0" layoutX="408.0" layoutY="183.0"
+        <ImageView fx:id="fTomImage" fitHeight="175.0" fitWidth="175.0" layoutX="364.0" layoutY="182.0"
                    onMouseClicked="#onFTom"/>
-        <ImageView fx:id="rideImage" fitHeight="164.0" fitWidth="164.0" layoutX="413.0" layoutY="68.0"
+        <ImageView fx:id="rideImage" fitHeight="164.0" fitWidth="164.0" layoutX="369.0" layoutY="67.0"
                    onMouseClicked="#onRide"/>
     </AnchorPane>
 </VBox>

@@ -48,16 +48,10 @@ public class DrumsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        bassImage.setImage(new Image(getClass().getResourceAsStream("images/kick.png")));
-        snareImage.setImage(new Image(getClass().getResourceAsStream("images/snare.png")));
-        hiHatImage.setImage(new Image(getClass().getResourceAsStream("images/hihat.png")));
-        crashImage.setImage(new Image(getClass().getResourceAsStream("images/crash.png")));
-        mTomImage.setImage(new Image(getClass().getResourceAsStream("images/tom.png")));
-        fTomImage.setImage(new Image(getClass().getResourceAsStream("images/floortom.png")));
-        rideImage.setImage(new Image(getClass().getResourceAsStream("images/ride.png")));
+        setImages();
 
         try {
-            PropertyResourceBundle bundle = new PropertyResourceBundle(getClass().getResourceAsStream("drums_strings"));
+            PropertyResourceBundle bundle = new PropertyResourceBundle(getClass().getResourceAsStream("strings/drums_strings"));
             typeMidi.setText(bundle.getString("midi_toggle_label"));
             typeFile.setText(bundle.getString("file_toggle_label"));
             gitHubLink = bundle.getString("github_link");
@@ -105,6 +99,16 @@ public class DrumsController implements Initializable {
             }
         }
 
+    }
+
+    private void setImages() {
+        bassImage.setImage(new Image(getClass().getResourceAsStream("images/kick.png")));
+        snareImage.setImage(new Image(getClass().getResourceAsStream("images/snare.png")));
+        hiHatImage.setImage(new Image(getClass().getResourceAsStream("images/hihat.png")));
+        crashImage.setImage(new Image(getClass().getResourceAsStream("images/crash.png")));
+        mTomImage.setImage(new Image(getClass().getResourceAsStream("images/tom.png")));
+        fTomImage.setImage(new Image(getClass().getResourceAsStream("images/floortom.png")));
+        rideImage.setImage(new Image(getClass().getResourceAsStream("images/ride.png")));
     }
 
     public void setHostServices(HostServices services) {

@@ -17,7 +17,7 @@ public class HelpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            PropertyResourceBundle bundle = new PropertyResourceBundle(getClass().getResourceAsStream("help_strings"));
+            PropertyResourceBundle bundle = new PropertyResourceBundle(getClass().getResourceAsStream("strings/help_strings"));
             overviewHelp.setText(bundle.getString("overview"));
             controlsHelp.setText(bundle.getString("controls"));
             soundHelp.setText(bundle.getString("sound_types"));
