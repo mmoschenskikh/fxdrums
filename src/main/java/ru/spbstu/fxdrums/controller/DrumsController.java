@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -41,9 +43,19 @@ public class DrumsController implements Initializable {
     public ToggleGroup soundType;
     @FXML
     public RadioMenuItem typeMidi, typeFile;
+    @FXML
+    public ImageView bassImage, snareImage, hiHatImage, crashImage, mTomImage, fTomImage, rideImage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        bassImage.setImage(new Image(getClass().getResourceAsStream("images/kick.png")));
+        snareImage.setImage(new Image(getClass().getResourceAsStream("images/snare.png")));
+        hiHatImage.setImage(new Image(getClass().getResourceAsStream("images/hihat.png")));
+        crashImage.setImage(new Image(getClass().getResourceAsStream("images/crash.png")));
+        mTomImage.setImage(new Image(getClass().getResourceAsStream("images/tom.png")));
+        fTomImage.setImage(new Image(getClass().getResourceAsStream("images/floortom.png")));
+        rideImage.setImage(new Image(getClass().getResourceAsStream("images/ride.png")));
+
         try {
             PropertyResourceBundle bundle = new PropertyResourceBundle(getClass().getResourceAsStream("drums_strings"));
             typeMidi.setText(bundle.getString("midi_toggle_label"));
@@ -93,29 +105,6 @@ public class DrumsController implements Initializable {
             }
         }
 
-    }
-
-    public void onHelp() {
-        try {
-            if (!showingHelp) {
-                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("help.fxml")));
-                Stage stage = new Stage();
-
-                stage.setScene(scene);
-                stage.setTitle("Help");
-                stage.setResizable(false);
-
-                showingHelp = true;
-                stage.showAndWait();
-                showingHelp = false;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void onGitHub() {
-        services.showDocument(gitHubLink);
     }
 
     public void setHostServices(HostServices services) {
@@ -201,5 +190,28 @@ public class DrumsController implements Initializable {
 
     public void onFTom() {
         fTom.makeSound();
+    }
+
+    public void onHelp() {
+        try {
+            if (!showingHelp) {
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("help.fxml")));
+                Stage stage = new Stage();
+
+                stage.setScene(scene);
+                stage.setTitle("Help");
+                stage.setResizable(false);
+
+                showingHelp = true;
+                stage.showAndWait();
+                showingHelp = false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onGitHub() {
+        services.showDocument(gitHubLink);
     }
 }

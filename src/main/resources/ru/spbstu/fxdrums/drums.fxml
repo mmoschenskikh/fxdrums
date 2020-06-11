@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="640.0"
       xmlns="http://javafx.com/javafx/11.0.1" fx:controller="ru.spbstu.fxdrums.controller.DrumsController">
     <MenuBar>
@@ -17,37 +19,30 @@
                     <ToggleGroup fx:id="soundType"/>
                 </toggleGroup>
             </RadioMenuItem>
-            <RadioMenuItem toggleGroup="$soundType" fx:id="typeFile"/>
+            <RadioMenuItem fx:id="typeFile" toggleGroup="$soundType"/>
         </Menu>
         <Menu text="Help">
-            <MenuItem text="View Help" accelerator="F1" onAction="#onHelp"/>
-            <MenuItem text="Visit GitHub page" onAction="#onGitHub"/>
+            <MenuItem accelerator="F1" onAction="#onHelp" text="View Help"/>
+            <MenuItem onAction="#onGitHub" text="Visit GitHub page"/>
         </Menu>
     </MenuBar>
-    <GridPane alignment="CENTER" focusTraversable="true" maxWidth="-Infinity" onKeyPressed="#handleKeyPressed"
-              VBox.vgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        </rowConstraints>
-        <Circle fill="DODGERBLUE" onMouseClicked="#onBass" radius="35.0" stroke="BLACK" strokeType="INSIDE"
-                GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4"
-                GridPane.valignment="CENTER"/>
-        <Circle fill="#f8f8d6" layoutX="410.0" layoutY="320.0" onMouseClicked="#onSnare" radius="35.0" stroke="BLACK"
-                strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3"
-                GridPane.valignment="CENTER"/>
-        <Circle fill="#f2ff1f" layoutX="160.0" layoutY="270.0" onMouseClicked="#onHiHat" radius="35.0" stroke="BLACK"
-                strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
-        <Circle fill="#ff9a1f" layoutX="260.0" layoutY="344.0" onMouseClicked="#onCrash" radius="35.0" stroke="BLACK"
-                strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
-    </GridPane>
+    <AnchorPane prefHeight="375.0" prefWidth="640.0" onKeyPressed="#handleKeyPressed" focusTraversable="true">
+        <VBox.margin>
+            <Insets/>
+        </VBox.margin>
+        <ImageView fx:id="bassImage" fitHeight="186.0" fitWidth="186.0" layoutX="227.0" layoutY="177.0"
+                   onMouseClicked="#onBass"/>
+        <ImageView fx:id="snareImage" fitHeight="146.0" fitWidth="146.0" layoutX="181.0" layoutY="104.0"
+                   onMouseClicked="#onSnare"/>
+        <ImageView fx:id="hiHatImage" fitHeight="140.0" fitWidth="140.0" layoutX="87.0" layoutY="200.0"
+                   onMouseClicked="#onHiHat"/>
+        <ImageView fx:id="crashImage" fitHeight="164.0" fitWidth="164.0" layoutX="75.0" layoutY="14.0"
+                   onMouseClicked="#onCrash"/>
+        <ImageView fx:id="mTomImage" fitHeight="116.0" fitWidth="116.0" layoutX="320.0" layoutY="84.0"
+                   onMouseClicked="#onMTom"/>
+        <ImageView fx:id="fTomImage" fitHeight="175.0" fitWidth="175.0" layoutX="408.0" layoutY="183.0"
+                   onMouseClicked="#onFTom"/>
+        <ImageView fx:id="rideImage" fitHeight="164.0" fitWidth="164.0" layoutX="413.0" layoutY="68.0"
+                   onMouseClicked="#onRide"/>
+    </AnchorPane>
 </VBox>
