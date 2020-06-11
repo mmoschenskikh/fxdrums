@@ -7,20 +7,18 @@
       xmlns="http://javafx.com/javafx/11.0.1"
       fx:controller="ru.spbstu.fxdrums.controller.DrumsController">
     <MenuBar>
-        <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" text="Mixer" onAction="#onMixer"/>
-            <SeparatorMenuItem mnemonicParsing="false"/>
-            <MenuItem mnemonicParsing="false" text="Exit" onAction="#onExit"/>
+        <Menu text="File">
+            <MenuItem text="Mixer" onAction="#onMixer"/>
+            <SeparatorMenuItem/>
+            <MenuItem text="Exit" onAction="#onExit"/>
         </Menu>
-        <Menu mnemonicParsing="false" text="Sound Type">
-            <RadioMenuItem mnemonicParsing="false" selected="true" text="MIDI (a bit slower, platform-dependent)"
-                           fx:id="typeMidi">
-                <toggleGroup>
-                    <ToggleGroup fx:id="soundType"/>
-                </toggleGroup>
-            </RadioMenuItem>
-            <RadioMenuItem mnemonicParsing="false" text=".wav files (a bit faster, needs extra files)"
-                           toggleGroup="$soundType"/>
+        <Menu text="Sound Type">
+            <fx:define>
+                <ToggleGroup fx:id="soundType"/>
+            </fx:define>
+            <RadioMenuItem toggleGroup="$soundType" selected="true" text="MIDI (a bit slower, platform-dependent)"
+                           fx:id="typeMidi"/>
+            <RadioMenuItem toggleGroup="$soundType" text=".wav files (a bit faster, needs extra files)"/>
         </Menu>
     </MenuBar>
     <GridPane alignment="CENTER" maxWidth="-Infinity" VBox.vgrow="ALWAYS" onKeyTyped="#handleKeyPressed">

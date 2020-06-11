@@ -6,5 +6,6 @@ module ru.spbstu.fxdrums {
 
     opens ru.spbstu.fxdrums to javafx.fxml;
     exports ru.spbstu.fxdrums;
+    exports ru.spbstu.fxdrums.model;
     exports ru.spbstu.fxdrums.controller;
 }

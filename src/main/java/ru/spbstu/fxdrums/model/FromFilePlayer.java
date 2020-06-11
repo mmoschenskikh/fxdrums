@@ -20,7 +20,7 @@ public class FromFilePlayer implements Player {
     }
 
     public void playSound(int volume) {
-        clip.play(volume);
+        clip.play(volume / 100.0);
     }
 
     @Override

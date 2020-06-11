@@ -19,6 +19,7 @@ public class DrumsApp extends Application {
         stage.setScene(scene);
         stage.setTitle("FXDrums");
         stage.setResizable(false);
+
         stage.show();
     }
 

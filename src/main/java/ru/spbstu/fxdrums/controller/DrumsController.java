@@ -34,7 +34,7 @@ public class DrumsController implements Initializable {
     private final Drum mTom = Drum.MEDIUM_TOM;
     private final Drum fTom = Drum.FLOOR_TOM;
 
-    private final Drum[] drums = {bass, snare, hiHat, crash, ride, mTom, fTom};
+    private Drum[] drums = {bass, snare, hiHat, crash, ride, mTom, fTom};
 
     @FXML
     public ToggleGroup soundType;
@@ -97,6 +97,7 @@ public class DrumsController implements Initializable {
     }
 
     public void handleKeyPressed(KeyEvent ke) {
+        //FIXME
         switch (ke.getCode()) {
             case M:
                 bass.makeSound();
@@ -124,11 +125,21 @@ public class DrumsController implements Initializable {
 
     public void onMixer() {
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("mixer.fxml"));
+
+            Scene scene = new Scene(loader.load());
             Stage stage = new Stage();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("mixer.fxml")));
+
+            MixerController mc = loader.getController();
+            mc.setMixerValues(drums);
+
             stage.setScene(scene);
             stage.setTitle("Mixer");
             stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.setOnCloseRequest(event -> drums = mc.getMixerValues());
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
