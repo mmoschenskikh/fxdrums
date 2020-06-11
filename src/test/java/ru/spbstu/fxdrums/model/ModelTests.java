@@ -3,6 +3,7 @@ package ru.spbstu.fxdrums.model;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -26,14 +27,15 @@ public class ModelTests {
     @Test
     public void drumTest() throws FileNotFoundException {
         Drum snare = Drum.SNARE;
-        snare.setVolume(45);
+        final int volume = new Random().nextInt(100);
+        snare.setVolume(volume);
 
-        assertEquals(45, snare.getVolume());
+        assertEquals(volume, snare.getVolume());
         assertEquals(PLAYER_TYPE_MIDI, snare.getPlayerType());
 
         snare.setPlayerType(PLAYER_TYPE_FILE);
 
-        assertEquals(45, snare.getVolume());
+        assertEquals(volume, snare.getVolume());
         assertEquals(PLAYER_TYPE_FILE, snare.getPlayerType());
     }
 
