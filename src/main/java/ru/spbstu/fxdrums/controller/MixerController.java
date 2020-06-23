@@ -1,23 +1,24 @@
 package ru.spbstu.fxdrums.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
 import ru.spbstu.fxdrums.model.Drum;
 
-public class MixerController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MixerController implements Initializable {
 
     @FXML
     public Slider kickVol, snareVol, hiHatVol, crashVol, rideVol, mTomVol, fTomVol;
 
     private Drum[] drums;
+    private DrumsController dc;
 
-    public Drum[] getMixerValues() {
-        getSliderVolumes();
-        return drums;
-    }
-
-    public void setMixerValues(Drum[] drums) {
+    public void setMixerValues(Drum[] drums, DrumsController dc) {
         this.drums = drums;
+        this.dc = dc;
         setSliderVolumes();
     }
 
@@ -41,4 +42,22 @@ public class MixerController {
         drums[6].setVolume((int) fTomVol.getValue());
     }
 
+    /**
+     * Changes volumes in DrumsController.
+     */
+    private void setDrumVolumes() {
+        getSliderVolumes();
+        dc.setDrums(drums);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        kickVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        snareVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        hiHatVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        crashVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        rideVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        mTomVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        fTomVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+    }
 }

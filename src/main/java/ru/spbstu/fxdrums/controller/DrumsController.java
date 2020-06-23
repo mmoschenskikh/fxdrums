@@ -37,7 +37,10 @@ public class DrumsController implements Initializable {
     private HostServices services;
     private Drum[] drums = {bass, snare, hiHat, crash, ride, mTom, fTom};
     private boolean showingHelp = false;
+    private boolean showingMixer = false;
     private String gitHubLink;
+
+    private Stage mixerStage, helpStage;
 
     @FXML
     public ToggleGroup soundType;
@@ -111,6 +114,10 @@ public class DrumsController implements Initializable {
         rideImage.setImage(new Image(getClass().getResourceAsStream("images/ride.png")));
     }
 
+    void setDrums(Drum[] drums) {
+        this.drums = drums;
+    }
+
     public void setHostServices(HostServices services) {
         this.services = services;
     }
@@ -143,25 +150,53 @@ public class DrumsController implements Initializable {
 
     public void onMixer() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("mixer.fxml"));
+            if (!showingMixer) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("mixer.fxml"));
 
-            Scene scene = new Scene(loader.load());
-            Stage stage = new Stage();
+                Scene scene = new Scene(loader.load());
+                mixerStage = new Stage();
 
-            MixerController mc = loader.getController();
-            mc.setMixerValues(drums);
+                MixerController mc = loader.getController();
+                mc.setMixerValues(drums, this);
 
-            stage.setScene(scene);
-            stage.setTitle("Mixer");
-            stage.setResizable(false);
-            stage.initModality(Modality.APPLICATION_MODAL);
+                mixerStage.setScene(scene);
+                mixerStage.setTitle("Mixer");
+                mixerStage.setResizable(false);
 
-            stage.setOnCloseRequest(event -> drums = mc.getMixerValues());
-
-            stage.show();
+                showingMixer = true;
+                mixerStage.showAndWait();
+                showingMixer = false;
+            } else {
+                mixerStage.requestFocus();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void onHelp() {
+        try {
+            if (!showingHelp) {
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("help.fxml")));
+                helpStage = new Stage();
+
+                helpStage.setScene(scene);
+                helpStage.setTitle("Help");
+                helpStage.setResizable(false);
+
+                showingHelp = true;
+                helpStage.showAndWait();
+                showingHelp = false;
+            } else {
+                helpStage.requestFocus();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onGitHub() {
+        services.showDocument(gitHubLink);
     }
 
     public void onExit() {
@@ -196,26 +231,4 @@ public class DrumsController implements Initializable {
         fTom.makeSound();
     }
 
-    public void onHelp() {
-        try {
-            if (!showingHelp) {
-                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("help.fxml")));
-                Stage stage = new Stage();
-
-                stage.setScene(scene);
-                stage.setTitle("Help");
-                stage.setResizable(false);
-
-                showingHelp = true;
-                stage.showAndWait();
-                showingHelp = false;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void onGitHub() {
-        services.showDocument(gitHubLink);
-    }
 }
