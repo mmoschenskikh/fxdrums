@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.Integer?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="254.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/11.0.1"
+      fx:controller="ru.spbstu.fxdrums.controller.DrumMachineController">
+   <GridPane alignment="CENTER" prefHeight="44.0" prefWidth="589.0" VBox.vgrow="NEVER">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="191.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="315.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="83.0"/>
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <Button fx:id="playStop" mnemonicParsing="false" text="Play" GridPane.columnIndex="2"
+              GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+      <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="210.0" spacing="15.0">
+         <GridPane.margin>
+            <Insets left="15.0" right="15.0"/>
+         </GridPane.margin>
+         <Label text="Beats per loop:"/>
+         <ChoiceBox fx:id="beatsChoiceBox" onAction="#onBeatsChoice" prefWidth="60.0">
+            <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <Integer fx:value="8"/>
+                  <Integer fx:value="12"/>
+                  <Integer fx:value="16"/>
+                  <Integer fx:value="24"/>
+               </FXCollections>
+            </items>
+         </ChoiceBox>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="290.0" spacing="15.0" GridPane.columnIndex="1">
+         <padding>
+            <Insets left="30.0" right="30.0"/>
+         </padding>
+         <Label fx:id="tempoLabel"/>
+         <Slider fx:id="tempoSlider" majorTickUnit="60.0" max="220.0" maxWidth="250.0" min="40.0"
+                 minorTickCount="0" showTickLabels="true" value="80.0"/>
+      </HBox>
+   </GridPane>
+   <GridPane alignment="CENTER">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="371.0" minWidth="10.0" prefWidth="72.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="699.0" minWidth="10.0" prefWidth="508.0"/>
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <VBox.margin>
+         <Insets bottom="5.0"/>
+      </VBox.margin>
+      <Label text="Kick" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Snare" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Hi-Hat" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Crash" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Ride" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Tom" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0"/>
+         </font>
+      </Label>
+      <Label text="Floor Tom" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+         <font>
+            <Font size="14.0"/>
+         </font>
+      </Label>
+      <HBox fx:id="bassHBox" prefHeight="36.0" prefWidth="512.0" spacing="5.0" GridPane.columnIndex="1">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </padding>
+      </HBox>
+      <HBox fx:id="snareHBox" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1"
+            GridPane.rowIndex="1">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </padding>
+      </HBox>
+      <HBox fx:id="hiHatHBox" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1"
+            GridPane.rowIndex="2">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </padding>
+      </HBox>
+      <HBox fx:id="crashHBox" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1"
+            GridPane.rowIndex="3">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </padding>
+      </HBox>
+      <HBox fx:id="rideHBox" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1"
+            GridPane.rowIndex="4">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </padding>
+      </HBox>
+      <HBox fx:id="mTomHBox" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1"
+            GridPane.rowIndex="5">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </padding>
+      </HBox>
+      <HBox fx:id="fTomHBox" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1"
+            GridPane.rowIndex="6">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </padding>
+      </HBox>
+   </GridPane>
+</VBox>

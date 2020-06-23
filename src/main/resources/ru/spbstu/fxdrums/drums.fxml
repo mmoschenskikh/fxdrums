@@ -10,6 +10,7 @@
     <MenuBar>
         <Menu text="File">
             <MenuItem onAction="#onMixer" text="Mixer"/>
+            <MenuItem onAction="#onDrumMachine" text="Drum Machine"/>
             <SeparatorMenuItem/>
             <MenuItem onAction="#onExit" text="Exit"/>
         </Menu>

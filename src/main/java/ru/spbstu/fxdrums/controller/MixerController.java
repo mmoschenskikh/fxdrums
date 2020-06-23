@@ -3,7 +3,7 @@ package ru.spbstu.fxdrums.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
-import ru.spbstu.fxdrums.model.Drum;
+import ru.spbstu.fxdrums.model.main.Drum;
 
 import java.net.URL;
 import java.util.ResourceBundle;

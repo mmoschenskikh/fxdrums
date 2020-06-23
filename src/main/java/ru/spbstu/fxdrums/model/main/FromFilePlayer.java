@@ -1,4 +1,4 @@
-package ru.spbstu.fxdrums.model;
+package ru.spbstu.fxdrums.model.main;
 
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaException;

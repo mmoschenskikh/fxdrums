@@ -1,10 +1,10 @@
-package ru.spbstu.fxdrums.model;
+package ru.spbstu.fxdrums.model.main;
 
 
 import java.io.FileNotFoundException;
 
-import static ru.spbstu.fxdrums.model.Player.PLAYER_TYPE_FILE;
-import static ru.spbstu.fxdrums.model.Player.PLAYER_TYPE_MIDI;
+import static ru.spbstu.fxdrums.model.main.Player.PLAYER_TYPE_FILE;
+import static ru.spbstu.fxdrums.model.main.Player.PLAYER_TYPE_MIDI;
 
 public enum Drum {
     BASS(36),

@@ -1,6 +1,7 @@
 package ru.spbstu.fxdrums;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -24,6 +25,11 @@ public class DrumsApp extends Application {
         stage.setTitle("FXDrums");
         stage.setResizable(false);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("icon.png")));
+
+        stage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(0);
+        });
 
         DrumsController dc = loader.getController();
         dc.setHostServices(getHostServices());
