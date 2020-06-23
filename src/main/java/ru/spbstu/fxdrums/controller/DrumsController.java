@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import ru.spbstu.fxdrums.model.main.Drum;
+import ru.spbstu.fxdrums.model.Drum;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,8 +21,8 @@ import java.net.URL;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-import static ru.spbstu.fxdrums.model.main.Player.PLAYER_TYPE_FILE;
-import static ru.spbstu.fxdrums.model.main.Player.PLAYER_TYPE_MIDI;
+import static ru.spbstu.fxdrums.model.Player.PLAYER_TYPE_FILE;
+import static ru.spbstu.fxdrums.model.Player.PLAYER_TYPE_MIDI;
 
 public class DrumsController implements Initializable {
 
@@ -186,6 +186,9 @@ public class DrumsController implements Initializable {
 
                 Scene scene = new Scene(loader.load());
                 machineStage = new Stage();
+
+                DrumMachineController dmc = loader.getController();
+                dmc.setDrums(drums);
 
                 scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
                 machineStage.setScene(scene);

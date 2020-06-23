@@ -17,14 +17,17 @@
       <rowConstraints>
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
       </rowConstraints>
-      <Button fx:id="playStop" mnemonicParsing="false" text="Play" GridPane.columnIndex="2"
-              GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2">
+         <Button fx:id="playButton" mnemonicParsing="false" onAction="#startPlaying" prefHeight="25.0"
+                 prefWidth="25.0"/>
+         <Button fx:id="stopButton" mnemonicParsing="false" onAction="#stopPlaying" prefHeight="25.0" prefWidth="25.0"/>
+      </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="210.0" spacing="15.0">
          <GridPane.margin>
             <Insets left="15.0" right="15.0"/>
          </GridPane.margin>
          <Label text="Beats per loop:"/>
-         <ChoiceBox fx:id="beatsChoiceBox" onAction="#onBeatsChoice" prefWidth="60.0">
+         <ChoiceBox fx:id="beatsChoiceBox" prefWidth="60.0">
             <items>
                <FXCollections fx:factory="observableArrayList">
                   <Integer fx:value="8"/>
@@ -40,8 +43,8 @@
             <Insets left="30.0" right="30.0"/>
          </padding>
          <Label fx:id="tempoLabel"/>
-         <Slider fx:id="tempoSlider" majorTickUnit="60.0" max="220.0" maxWidth="250.0" min="40.0"
-                 minorTickCount="0" showTickLabels="true" value="80.0"/>
+         <Slider fx:id="tempoSlider" majorTickUnit="60.0" max="220.0" maxWidth="250.0" min="40.0" minorTickCount="0"
+                 showTickLabels="true" value="80.0"/>
       </HBox>
    </GridPane>
    <GridPane alignment="CENTER">

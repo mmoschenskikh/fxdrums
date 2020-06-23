@@ -1,4 +1,4 @@
-package ru.spbstu.fxdrums.model.main;
+package ru.spbstu.fxdrums.model;
 
 import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;

@@ -5,3 +5,11 @@
 #beat-not-selected {
 
 }
+
+#beat-selected-playing {
+    -fx-background-color: #5200E0
+}
+
+#beat-not-selected-playing {
+    -fx-background-color: #8D89A3
+}

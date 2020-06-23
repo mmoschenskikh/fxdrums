@@ -1,4 +1,4 @@
-package ru.spbstu.fxdrums.model.main;
+package ru.spbstu.fxdrums.model;
 
 /**
  * Interface for playing drums sounds.

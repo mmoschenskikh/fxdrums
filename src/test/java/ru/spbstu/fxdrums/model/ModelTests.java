@@ -1,17 +1,14 @@
 package ru.spbstu.fxdrums.model;
 
 import org.junit.jupiter.api.Test;
-import ru.spbstu.fxdrums.model.main.Drum;
-import ru.spbstu.fxdrums.model.main.FromFilePlayer;
-import ru.spbstu.fxdrums.model.main.MidiPlayer;
 
 import java.io.FileNotFoundException;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static ru.spbstu.fxdrums.model.main.Player.PLAYER_TYPE_FILE;
-import static ru.spbstu.fxdrums.model.main.Player.PLAYER_TYPE_MIDI;
+import static ru.spbstu.fxdrums.model.Player.PLAYER_TYPE_FILE;
+import static ru.spbstu.fxdrums.model.Player.PLAYER_TYPE_MIDI;
 
 
 public class ModelTests {
