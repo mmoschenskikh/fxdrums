@@ -307,7 +307,7 @@ public class DrumMachineController implements Initializable {
 
     private FileChooser prepareFileChooser() {
         FileChooser chooser = new FileChooser();
-        chooser.setTitle("Save pattern...");
+        chooser.setTitle("Select file...");
         chooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Pattern files", "*.pf"),
                 new FileChooser.ExtensionFilter("All files", "*.*")

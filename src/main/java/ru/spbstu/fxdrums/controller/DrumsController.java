@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import ru.spbstu.fxdrums.DrumsApp;
 import ru.spbstu.fxdrums.model.Drum;
 
@@ -34,22 +35,16 @@ public class DrumsController implements Initializable {
     private final Drum ride = Drum.RIDE;
     private final Drum mTom = Drum.MEDIUM_TOM;
     private final Drum fTom = Drum.FLOOR_TOM;
+    private final Drum[] drums = {bass, snare, hiHat, crash, ride, mTom, fTom};
+
     @FXML
     public RadioMenuItem typeMidi;
-
-    private HostServices services;
-    private String gitHubLink;
-    // Boolean values to prevent opening more than one instance of window.
-    private boolean showingHelp = false;
-    private boolean showingMixer = false;
-    private boolean showingMachine = false;
     @FXML
     public RadioMenuItem typeFile;
     @FXML
     public ImageView bassImage;
     @FXML
     public ImageView snareImage;
-
     @FXML
     public ToggleGroup soundType;
     @FXML
@@ -62,7 +57,14 @@ public class DrumsController implements Initializable {
     public ImageView fTomImage;
     @FXML
     public ImageView rideImage;
-    private Drum[] drums = {bass, snare, hiHat, crash, ride, mTom, fTom};
+
+    private HostServices services;
+    private String gitHubLink;
+    private boolean closingAll = false;
+    // Boolean values to prevent opening more than one instance of window.
+    private boolean showingHelp = false;
+    private boolean showingMixer = false;
+    private boolean showingMachine = false;
     // Stage objects to change focus if the window is already opened.
     private Stage mixerStage;
     private Stage helpStage;
@@ -122,7 +124,7 @@ public class DrumsController implements Initializable {
                 mixerStage = new Stage();
 
                 MixerController mc = loader.getController();
-                mc.setMixerValues(drums, this);
+                mc.setMixerValues(drums);
 
                 mixerStage.setScene(scene);
                 mixerStage.setTitle("Mixer");
@@ -159,15 +161,22 @@ public class DrumsController implements Initializable {
 
                 machineStage.setOnCloseRequest(event -> {
                     dmc.setPlaying(false);
+                    showingMachine = false;
                     if (!dmc.isStateSaved()) {
-                        dmc.showSaveConfirmBox(machineStage::close, dmc::onSave);
-                        event.consume();
+                        showingMachine = true;
+                        dmc.showSaveConfirmBox(() -> {
+                            machineStage.close();
+                            showingMachine = false;
+                        }, dmc::onSave);
+                        machineStage.requestFocus();
+                    } else if (!closingAll) {
+                        machineStage.close();
                     }
+                    event.consume();
                 });
 
                 showingMachine = true;
                 machineStage.showAndWait();
-                showingMachine = false;
             } else {
                 machineStage.requestFocus();
             }
@@ -203,8 +212,15 @@ public class DrumsController implements Initializable {
     }
 
     public void onExit() {
-        Platform.exit();
-        System.exit(0);
+        if (showingMachine) {
+            closingAll = true;
+            machineStage.fireEvent(new WindowEvent(machineStage, WindowEvent.WINDOW_CLOSE_REQUEST));
+            closingAll = false;
+        }
+        if (!showingMachine) {
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
     public void onBass() {
@@ -237,10 +253,6 @@ public class DrumsController implements Initializable {
 
     public void setHostServices(HostServices services) {
         this.services = services;
-    }
-
-    void setDrums(Drum[] drums) {
-        this.drums = drums;
     }
 
     /**

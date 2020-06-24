@@ -7,7 +7,6 @@ import ru.spbstu.fxdrums.model.Drum;
 public class MixerController {
 
     private Drum[] drums;
-    private DrumsController dc;
 
     @FXML
     public Slider kickVol;
@@ -24,21 +23,20 @@ public class MixerController {
     @FXML
     public Slider fTomVol;
 
-    public void setMixerValues(Drum[] drums, DrumsController dc) {
+    public void setMixerValues(Drum[] drums) {
         this.drums = drums;
-        this.dc = dc;
         setSliderVolumes();
         setSliderListeners();
     }
 
-    private void setSliderListeners() { // Cannot use initialize() because need to set initial volumes before first
-        kickVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        snareVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        hiHatVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        crashVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        rideVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        mTomVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        fTomVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+    private void setSliderListeners() {
+        kickVol.valueProperty().addListener((obs, ov, nv) -> getSliderVolumes());
+        snareVol.valueProperty().addListener((obs, ov, nv) -> getSliderVolumes());
+        hiHatVol.valueProperty().addListener((obs, ov, nv) -> getSliderVolumes());
+        crashVol.valueProperty().addListener((obs, ov, nv) -> getSliderVolumes());
+        rideVol.valueProperty().addListener((obs, ov, nv) -> getSliderVolumes());
+        mTomVol.valueProperty().addListener((obs, ov, nv) -> getSliderVolumes());
+        fTomVol.valueProperty().addListener((obs, ov, nv) -> getSliderVolumes());
     }
 
     private void setSliderVolumes() { // Cannot use array or list here because then sliders are considered as nulls
@@ -59,13 +57,5 @@ public class MixerController {
         drums[4].setVolume((int) rideVol.getValue());
         drums[5].setVolume((int) mTomVol.getValue());
         drums[6].setVolume((int) fTomVol.getValue());
-    }
-
-    /**
-     * Changes volumes in DrumsController.
-     */
-    private void setDrumVolumes() {
-        getSliderVolumes();
-        dc.setDrums(drums);
     }
 }
