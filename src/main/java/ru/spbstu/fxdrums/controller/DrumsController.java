@@ -161,6 +161,7 @@ public class DrumsController implements Initializable {
                     dmc.setPlaying(false);
                     if (!dmc.isStateSaved()) {
                         dmc.showSaveConfirmBox(machineStage::close, dmc::onSave);
+                        event.consume();
                     }
                 });
 
