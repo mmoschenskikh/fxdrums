@@ -27,9 +27,9 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
       </rowConstraints>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2">
-         <Button fx:id="playButton" mnemonicParsing="false" onAction="#startPlaying" prefHeight="25.0"
+         <Button fx:id="playButton" mnemonicParsing="false" onAction="#onStart" prefHeight="25.0"
                  prefWidth="25.0"/>
-         <Button fx:id="stopButton" mnemonicParsing="false" onAction="#stopPlaying" prefHeight="25.0" prefWidth="25.0"/>
+         <Button fx:id="stopButton" mnemonicParsing="false" onAction="#onStop" prefHeight="25.0" prefWidth="25.0"/>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="210.0" spacing="15.0">
          <GridPane.margin>

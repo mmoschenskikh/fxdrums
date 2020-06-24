@@ -15,25 +15,6 @@ public class ConfirmBoxController {
     private Action okAction;
     private Action saveAction;
 
-    public void setMessage(String message) {
-        this.message.setText(message);
-    }
-
-    public ConfirmBoxController setOkAction(Action action) {
-        okAction = action;
-        return this;
-    }
-
-    public ConfirmBoxController setSaveAction(Action action) {
-        saveAction = action;
-        return this;
-    }
-
-    private void closeConfirmBox() {
-        Stage stage = (Stage) message.getScene().getWindow();
-        stage.close();
-    }
-
     public void onOk() {
         closeConfirmBox();
         okAction.act();
@@ -46,5 +27,22 @@ public class ConfirmBoxController {
 
     public void onCancel() {
         closeConfirmBox();
+    }
+
+    public void setMessage(String message) {
+        this.message.setText(message);
+    }
+
+    public void setOkAction(Action action) {
+        okAction = action;
+    }
+
+    public void setSaveAction(Action action) {
+        saveAction = action;
+    }
+
+    private void closeConfirmBox() {
+        Stage stage = (Stage) message.getScene().getWindow();
+        stage.close();
     }
 }

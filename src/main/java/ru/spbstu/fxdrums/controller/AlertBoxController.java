@@ -8,12 +8,12 @@ public class AlertBoxController {
     @FXML
     public Label message;
 
-    public void setMessage(String message) {
-        this.message.setText(message);
-    }
-
     public void onOk() {
         Stage stage = (Stage) message.getScene().getWindow();
         stage.close();
+    }
+
+    public void setMessage(String message) {
+        this.message.setText(message);
     }
 }

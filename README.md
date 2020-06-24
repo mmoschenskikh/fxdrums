@@ -1,9 +1,11 @@
 # FXDrums
 Simple drum simulator built using JavaFX.
-## Screenshot
+## Screenshots
 ![screenshot](screenshot.png)
+![screenshot](dmscreenshot.png)
 ## Key Features
 * Built-in mixer that allows to change the volume separately
+* Drum machine to play, save and load drum patterns
 * You can use your own .wav files as drums sounds
 * Both mouse and keyboard controls
 ## Built With

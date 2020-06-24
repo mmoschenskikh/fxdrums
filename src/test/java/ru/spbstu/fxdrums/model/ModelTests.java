@@ -2,7 +2,9 @@ package ru.spbstu.fxdrums.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,4 +41,18 @@ public class ModelTests {
         assertEquals(PLAYER_TYPE_FILE, snare.getPlayerType());
     }
 
+    @Test
+    public void patternTest() throws IOException {
+        DrumMachinePattern pattern = PatternManager.load(new File("pattern_samples/16beats_130bpm_pattern.pf"));
+        assertEquals(16, pattern.getLoopSize());
+        assertEquals(130, pattern.getTempo());
+
+        File tempFile = new File("pattern_samples/temp.pf");
+        PatternManager.save(pattern, tempFile);
+        DrumMachinePattern tempPattern = PatternManager.load(tempFile);
+
+        assertEquals(pattern, tempPattern);
+
+        tempFile.delete();
+    }
 }

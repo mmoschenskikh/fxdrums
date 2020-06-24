@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class DrumsApp extends Application {
 
+    public static Image icon = new Image(DrumsApp.class.getResourceAsStream("icon.png"));
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -24,7 +26,7 @@ public class DrumsApp extends Application {
         stage.setScene(scene);
         stage.setTitle("FXDrums");
         stage.setResizable(false);
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("icon.png")));
+        stage.getIcons().add(icon);
 
         stage.setOnCloseRequest(event -> {
             Platform.exit();

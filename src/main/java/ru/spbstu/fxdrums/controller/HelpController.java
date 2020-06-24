@@ -21,8 +21,8 @@ public class HelpController implements Initializable {
             overviewHelp.setText(bundle.getString("overview"));
             controlsHelp.setText(bundle.getString("controls"));
             soundHelp.setText(bundle.getString("sound_types"));
-        } catch (IOException exception) {
-            exception.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -10,11 +10,34 @@ import java.util.ResourceBundle;
 
 public class MixerController implements Initializable {
 
-    @FXML
-    public Slider kickVol, snareVol, hiHatVol, crashVol, rideVol, mTomVol, fTomVol;
-
     private Drum[] drums;
     private DrumsController dc;
+
+    @FXML
+    public Slider kickVol;
+    @FXML
+    public Slider snareVol;
+    @FXML
+    public Slider hiHatVol;
+    @FXML
+    public Slider crashVol;
+    @FXML
+    public Slider rideVol;
+    @FXML
+    public Slider mTomVol;
+    @FXML
+    public Slider fTomVol;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        kickVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        snareVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        hiHatVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        crashVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        rideVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        mTomVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+        fTomVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
+    }
 
     public void setMixerValues(Drum[] drums, DrumsController dc) {
         this.drums = drums;
@@ -48,16 +71,5 @@ public class MixerController implements Initializable {
     private void setDrumVolumes() {
         getSliderVolumes();
         dc.setDrums(drums);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        kickVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        snareVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        hiHatVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        crashVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        rideVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        mTomVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
-        fTomVol.valueProperty().addListener((obs, ov, nv) -> setDrumVolumes());
     }
 }
