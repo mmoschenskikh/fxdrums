@@ -235,31 +235,35 @@ public class DrumsController implements Initializable {
         Platform.exit();
     }
 
+    private void makeSound(Drum drum, boolean restricted) {
+        if (!restricted) drum.makeSound();
+    }
+
     public void onBass() {
-        bass.makeSound();
+        makeSound(bass, showingMachine);
     }
 
     public void onSnare() {
-        snare.makeSound();
+        makeSound(snare, showingMachine);
     }
 
     public void onHiHat() {
-        hiHat.makeSound();
+        makeSound(hiHat, showingMachine);
     }
 
     public void onCrash() {
-        crash.makeSound();
+        makeSound(crash, showingMachine);
     }
 
     public void onMTom() {
-        mTom.makeSound();
+        makeSound(mTom, showingMachine);
     }
 
     public void onRide() {
-        ride.makeSound();
+        makeSound(ride, showingMachine);
     }
 
     public void onFTom() {
-        fTom.makeSound();
+        makeSound(fTom, showingMachine);
     }
 }

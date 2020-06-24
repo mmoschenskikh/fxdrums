@@ -6,13 +6,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.Integer?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="254.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/11.0.1"
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="273.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/11.0.1"
       fx:controller="ru.spbstu.fxdrums.controller.DrumMachineController">
+   <MenuBar>
+      <Menu mnemonicParsing="false" text="File">
+         <MenuItem mnemonicParsing="false" text="Save pattern" onAction="#onSave"/>
+         <MenuItem mnemonicParsing="false" text="Load pattern" onAction="#onLoad"/>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Edit">
+         <MenuItem mnemonicParsing="false" text="Clear all" onAction="#onClear"/>
+      </Menu>
+   </MenuBar>
    <GridPane alignment="CENTER" prefHeight="44.0" prefWidth="589.0" VBox.vgrow="NEVER">
       <columnConstraints>
-         <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="191.0"/>
-         <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="315.0"/>
-         <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="83.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="184.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="310.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="95.0"/>
       </columnConstraints>
       <rowConstraints>
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
@@ -40,7 +49,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="290.0" spacing="15.0" GridPane.columnIndex="1">
          <padding>
-            <Insets left="30.0" right="30.0"/>
+            <Insets left="25.0" right="25.0"/>
          </padding>
          <Label fx:id="tempoLabel"/>
          <Slider fx:id="tempoSlider" majorTickUnit="60.0" max="220.0" maxWidth="250.0" min="40.0" minorTickCount="0"
